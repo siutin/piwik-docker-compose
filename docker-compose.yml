@@ -1,7 +1,7 @@
 version: '2'
 services:
  web: 
-   image: marvambass/piwik
+   image: marvambass/piwik:3.0.3
    restart: always
    depends_on: 
      - db
