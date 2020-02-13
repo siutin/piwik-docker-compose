@@ -6,7 +6,7 @@ services:
    depends_on:
      - db
    volumes:
-    - ./external:/etc/nginx/external
+    - "${NGINX_EXTERNAL_PATH}:/etc/nginx/external"
    env_file:
     - web-default.env
    ports:
@@ -17,8 +17,8 @@ services:
   image: marvambass/mysql
   restart: always
   volumes:
-   - ./mysql/data/:/var/lib/mysql
-   - ./mysql/backup/:/var/mysql-backup
-   - ./mysql/log:/var/log/mysql
+   - "${MYSQL_DATA_PATH}:/var/lib/mysql"
+   - "${MYSQL_BACKUP_PATH}:/var/mysql-backup"
+   - "${MYSQL_LOG_PATH}:/var/log/mysql"
   env_file:
    - db-default.env
