@@ -1,9 +1,9 @@
 version: '2'
 services:
- web: 
+ web:
    image: marvambass/piwik:3.0.3
    restart: always
-   depends_on: 
+   depends_on:
      - db
    volumes:
     - ./external:/etc/nginx/external
@@ -23,8 +23,8 @@ services:
     - "8180:80"
    links:
     - db:db
- db: 
-  image: marvambass/mysql  
+ db:
+  image: marvambass/mysql
   restart: always
   volumes:
    - /srv/piwik/mysql/data/:/var/lib/mysql
