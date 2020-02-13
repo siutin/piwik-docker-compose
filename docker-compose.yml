@@ -7,18 +7,8 @@ services:
      - db
    volumes:
     - ./external:/etc/nginx/external
-   environment:
-    PIWIK_MYSQL_USER: piwikadmin
-    PIWIK_MYSQL_PASSWORD: piwikpasswd
-    PIWIK_MYSQL_HOST: db
-    PIWIK_MYSQL_PORT: 3306
-    PIWIK_ADMIN: piwikadmin
-    PIWIK_ADMIN_PASSWORD: piwikpasswd
-    SITE_NAME: demo
-    SITE_URL: localhost
-    SITE_TIMEZONE: Asia\Hong_Kong
-    ANONYMISE_IP: 0
-    PIWIK_RELATIVE_URL_ROOT: /
+   env_file:
+    - web-default.env
    ports:
     - "8180:80"
    links:
@@ -27,9 +17,8 @@ services:
   image: marvambass/mysql
   restart: always
   volumes:
-   - /srv/piwik/mysql/data/:/var/lib/mysql
-   - /srv/piwik/mysql/backup/:/var/mysql-backup
-   - /srv/piwik/mysql/log:/var/log/mysql
-  environment:
-   ADMIN_USER: piwikadmin
-   ADMIN_PASSWORD: piwikpasswd
+   - ./mysql/data/:/var/lib/mysql
+   - ./mysql/backup/:/var/mysql-backup
+   - ./mysql/log:/var/log/mysql
+  env_file:
+   - db-default.env
